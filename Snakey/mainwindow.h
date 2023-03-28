@@ -16,6 +16,33 @@ QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
 
+class Snake {
+public:
+    int headSpace[2] = {7, 7};
+    int nextSpace[2] = {7, 7};
+    std::vector<std::vector<int>> tailSpaces;
+
+    // 0 = UP, 1 = RIGHT, 2 = DOWN, 3 = LEFT
+    int direction = 0;
+    bool alive = true;
+
+    QBrush headBrush;
+    QBrush tailBrush;
+
+    QPen headPen;
+    QPen tailPen;
+
+    QRectF head;
+    std::vector<QRectF> tail;
+
+    void Init();
+    void Reset();
+    void FindNext();
+    void UpdatePos();
+    void Grow();
+    void DrawSelf();
+};
+
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
@@ -43,10 +70,17 @@ private:
     int headSpace1[2] = {7, 7};
     int nextSpace1[2] = {7, 7};
     int appleSpace[2];
-    std::vector<std::vector<int>> tailSpaces1;
+     std::vector<std::vector<int>> tailSpaces1;
 
     const int squareSize = 40;
     const int gridSize = 15;
+
+    // MENU OPTIONS
+
+    int period = 250;
+    bool twoPlayer = true;
+
+    // END MENU OPTIONS
 
     QBrush headBrush;
     QBrush tailBrush;
@@ -63,6 +97,9 @@ private:
 
     // 0 = UP, 1 = RIGHT, 2 = DOWN, 3 = LEFT
     int direction = 0;
+
+    Snake Alex;
+    Snake Don;
 
     QTimer *timer;
     QTimer *beginGame;
