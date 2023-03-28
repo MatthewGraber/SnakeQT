@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
+extern int var;
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -25,6 +26,7 @@ MainWindow::MainWindow(QWidget *parent)
     timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()), this, SLOT(update()));
 
+
     // Put the head in the center
 
 }
@@ -41,7 +43,7 @@ void MainWindow::on_startBtn_clicked()
     tailSpaces1 = std::vector<std::vector<int>>();
 
     ui->graphicsView->setFixedHeight(602);
-    timer->start(500);
+    timer->start(var);
     ui->startBtn->setVisible(false);
 
     SetApplePosition();
