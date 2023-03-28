@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/sounds"/>
+    <qresource prefix="/music">
+        <file>s033.wav</file>
+    </qresource>
+</RCC>

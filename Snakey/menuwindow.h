@@ -1,6 +1,7 @@
 #ifndef MENUWINDOW_H
 #define MENUWINDOW_H
 #include <QMainWindow>
+#include <QtMultimedia/QMediaPlayer>
 #include "mainwindow.h"
 
 namespace Ui {

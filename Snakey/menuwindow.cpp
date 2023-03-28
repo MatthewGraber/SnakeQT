@@ -2,6 +2,9 @@
 #include "difficulty_select.h"
 #include "exiting.h"
 #include "ui_menuwindow.h"
+#include <QtMultimedia/QMediaPlayer>
+
+
 
 MenuWindow::MenuWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -9,6 +12,10 @@ MenuWindow::MenuWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     this->setWindowTitle("Main Menu");
+    //Main Menu Music
+    //QMediaPlayer* music = new QMediaPlayer();
+    //music->setSource(QUrl::fromLocalFile("qrc:/music/s033.wav"));
+    //music->play();
 }
 
 MenuWindow::~MenuWindow()
