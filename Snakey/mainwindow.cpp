@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
+#include "death.h"
 extern int var;
 
 MainWindow::MainWindow(QWidget *parent)
@@ -167,4 +168,7 @@ void MainWindow::SetApplePosition() {
 
 void MainWindow::EndGame() {
     timer->stop();
+    this->close();
+    Death *d = new Death();
+    d->show();
 }

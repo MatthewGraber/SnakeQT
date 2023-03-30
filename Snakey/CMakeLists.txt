@@ -15,6 +15,9 @@ find_package(Qt6Multimedia REQUIRED)
 
 set(PROJECT_SOURCES
         res.qrc
+        death.h
+        death.cpp
+        death.ui
         difficulty_select.cpp
         difficulty_select.h
         difficulty_select.ui
