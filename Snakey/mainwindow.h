@@ -55,12 +55,14 @@ private slots:
     void on_startBtn_clicked();
     void update();
 
-
+protected:
+    //bool eventFilter(QObject *obj, QEvent *event) override;
 
 private:
     void DrawScene();
     void SetApplePosition();
 
+    void StartGame();
     void EndGame();
     void keyPressEvent(QKeyEvent *);
 
@@ -77,7 +79,7 @@ private:
 
     // MENU OPTIONS
 
-    int period = 250;
+    int period = 500;
     bool twoPlayer = true;
 
     // END MENU OPTIONS
