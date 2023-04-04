@@ -52,6 +52,7 @@ class MainWindow : public QMainWindow
 
 public:
     MainWindow(QWidget *parent = nullptr);
+    bool twoPlayer = true;
     ~MainWindow();
 
 private slots:
@@ -83,7 +84,6 @@ private:
     // MENU OPTIONS
 
     int period = 500;
-    bool twoPlayer = true;
 
     // END MENU OPTIONS
 

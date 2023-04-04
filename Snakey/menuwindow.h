@@ -21,6 +21,8 @@ private slots:
 
     void on_Exit_Button_clicked();
 
+    void on_Two_Player_Game_clicked();
+
 private:
     Ui::MenuWindow *ui;
 };

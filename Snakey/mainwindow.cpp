@@ -3,7 +3,6 @@
 #include <QDebug>
 #include "death.h"
 extern int var;
-
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
