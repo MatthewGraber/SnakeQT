@@ -14,6 +14,8 @@ MainWindow::MainWindow(QWidget *parent)
     // QObject::installEventFilter();
 
     // twoPlayer = false;
+    Alex.score = ui->score1;
+    Don.score = ui->score2;
 
     // Brushes and pens
     // Alex
@@ -47,6 +49,8 @@ MainWindow::MainWindow(QWidget *parent)
 
     // Put the head in the center
 
+    StartGame();
+
 }
 
 MainWindow::~MainWindow()
@@ -55,10 +59,9 @@ MainWindow::~MainWindow()
 }
 
 
-void MainWindow::on_startBtn_clicked()
+void MainWindow::StartGame()
 {
-//    tail = std::vector<QRectF>();
-//    tailSpaces1 = std::vector<std::vector<int>>();
+    // Begin the game
     qInfo() << "Begining game";
     if (twoPlayer) {
         Alex.headSpace[0] = 3;
@@ -81,9 +84,10 @@ void MainWindow::on_startBtn_clicked()
 
     qInfo() << "Started timer";
 
-    ui->startBtn->setVisible(false);
+    // ui->startBtn->setVisible(false);
 
     SetApplePosition();
+
 }
 
 
@@ -231,6 +235,8 @@ void Snake::Grow() {
 
     headSpace[0] = nextSpace[0];
     headSpace[1] = nextSpace[1];
+
+    score->display((int) tail.size());
 }
 
 
