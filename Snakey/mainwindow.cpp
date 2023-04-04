@@ -1,6 +1,8 @@
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
 #include <QDebug>
+#include "death.h"
+extern int var;
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -47,6 +49,7 @@ MainWindow::MainWindow(QWidget *parent)
     timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()), this, SLOT(update()));
 
+
     // Put the head in the center
 
     StartGame();
@@ -80,7 +83,7 @@ void MainWindow::StartGame()
     qInfo() << "Reset Snakes";
 
     ui->graphicsView->setFixedHeight(604);
-    timer->start(period);
+    timer->start(var);
 
     qInfo() << "Started timer";
 
@@ -386,4 +389,7 @@ void MainWindow::SetApplePosition() {
 
 void MainWindow::EndGame() {
     timer->stop();
+    this->close();
+    Death *d = new Death();
+    d->show();
 }
