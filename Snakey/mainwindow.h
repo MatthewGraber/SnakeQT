@@ -11,6 +11,7 @@
 #include <QKeyEvent>
 #include <vector>
 #include <iostream>
+#include <QLCDNumber>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -25,6 +26,8 @@ public:
     // 0 = UP, 1 = RIGHT, 2 = DOWN, 3 = LEFT
     int direction = 0;
     bool alive = true;
+
+    QLCDNumber *score;
 
     QBrush headBrush;
     QBrush tailBrush;
@@ -52,15 +55,17 @@ public:
     ~MainWindow();
 
 private slots:
-    void on_startBtn_clicked();
+   // void on_startBtn_clicked();
     void update();
 
-
+protected:
+    //bool eventFilter(QObject *obj, QEvent *event) override;
 
 private:
     void DrawScene();
     void SetApplePosition();
 
+    void StartGame();
     void EndGame();
     void keyPressEvent(QKeyEvent *);
 
@@ -77,7 +82,7 @@ private:
 
     // MENU OPTIONS
 
-    int period = 250;
+    int period = 500;
     bool twoPlayer = true;
 
     // END MENU OPTIONS
