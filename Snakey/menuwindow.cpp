@@ -2,9 +2,9 @@
 #include "difficulty_select.h"
 #include "exiting.h"
 #include "ui_menuwindow.h"
-#include <QtMultimedia/QMediaPlayer>
 
 bool player_cnt;
+
 MenuWindow::MenuWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MenuWindow)
