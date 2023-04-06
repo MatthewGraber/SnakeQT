@@ -51,13 +51,14 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 public:
-    MainWindow(QWidget *parent = nullptr);
+    MainWindow(QWidget *parent = nullptr, bool twoPlay = false);
     bool twoPlayer = true;
     ~MainWindow();
 
 private slots:
    // void on_startBtn_clicked();
     void update();
+    void countdown();
 
 protected:
     //bool eventFilter(QObject *obj, QEvent *event) override;

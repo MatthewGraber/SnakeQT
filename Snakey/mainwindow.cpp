@@ -3,7 +3,7 @@
 #include <QDebug>
 #include "death.h"
 extern int var;
-MainWindow::MainWindow(QWidget *parent)
+MainWindow::MainWindow(QWidget *parent, bool twoPlay)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
@@ -11,6 +11,8 @@ MainWindow::MainWindow(QWidget *parent)
     ui->graphicsView->setScene(&SnakeScene);
 
     srand(time(0));
+
+    twoPlayer = twoPlay;
 
     // QObject::installEventFilter();
 
@@ -47,24 +49,13 @@ MainWindow::MainWindow(QWidget *parent)
 
     timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()), this, SLOT(update()));
+    beginGame = new QTimer(this);
+    connect(beginGame, SIGNAL(timeout()), this, SLOT(countdown()));
+    beginGame->start(var);
 
 
-    // Put the head in the center
 
-    StartGame();
-
-}
-
-MainWindow::~MainWindow()
-{
-    delete ui;
-}
-
-
-void MainWindow::StartGame()
-{
-    // Begin the game
-    qInfo() << "Begining game";
+    // Inital positions
     if (twoPlayer) {
         Alex.headSpace[0] = 3;
         Alex.headSpace[1] = 7;
@@ -76,12 +67,58 @@ void MainWindow::StartGame()
         Alex.headSpace[0] = 7;
         Alex.headSpace[1] = 7;
     }
+    appleSpace[0] = 7;
+    appleSpace[1] = 4;
+    DrawScene();
+
+
+    // If singleplayer, hide player two's things
+    if (!twoPlayer) {
+        ui->score2->setVisible(false);
+        ui->textEdit_4->setVisible(false);
+        ui->textEdit_6->setVisible(false);
+        ui->textEdit_7->setVisible(false);
+        ui->textEdit_8->setVisible(false);
+    }
+    // Put the head in the center
+
+    //StartGame();
+
+}
+
+MainWindow::~MainWindow()
+{
+    delete ui;
+}
+
+void MainWindow::countdown() {
+    static int count = 0;
+    ui->graphicsView->setFixedHeight(604);
+    if (count == 8) {
+        count = 0;
+        beginGame->stop();
+        StartGame();
+    }
+    else {
+        if (count % 2) {
+            ui->readyText->setVisible(false);
+        }
+        else {
+            ui->readyText->setVisible(true);
+        }
+        count++;
+    }
+}
+
+void MainWindow::StartGame()
+{
+    // Begin the game
+    qInfo() << "Begining game";
     Alex.Reset();
     Don.Reset();
 
     qInfo() << "Reset Snakes";
 
-    ui->graphicsView->setFixedHeight(604);
     timer->start(var);
 
     qInfo() << "Started timer";
@@ -89,6 +126,7 @@ void MainWindow::StartGame()
     // ui->startBtn->setVisible(false);
 
     SetApplePosition();
+
 
 }
 
